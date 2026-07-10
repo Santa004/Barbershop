@@ -1,0 +1,277 @@
+/* Kisa Barbershop – premium enhancements (layout preserved) */
+
+:root {
+  --kisa-accent: #c8a96a;
+  --kisa-accent-glow: rgba(200, 169, 106, 0.35);
+  --kisa-dark: #0f0f0f;
+  --kisa-glass: rgba(15, 15, 15, 0.82);
+}
+
+/* ── Sticky booking bar ── */
+.kisa-booking-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 20px;
+  background: var(--kisa-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(200, 169, 106, 0.15);
+  transform: translateY(-100%);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.kisa-booking-bar.is-visible {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.kisa-booking-bar__info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.4;
+}
+
+.kisa-booking-bar__info span {
+  white-space: nowrap;
+}
+
+.kisa-booking-bar__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+.kisa-booking-bar__status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 6px rgba(74, 222, 128, 0.6);
+}
+
+.kisa-booking-bar__status.is-closed::before {
+  background: #f87171;
+  box-shadow: 0 0 6px rgba(248, 113, 113, 0.6);
+}
+
+.kisa-booking-bar__cta {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  background: var(--kisa-accent);
+  color: var(--kisa-dark) !important;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  border-radius: 6px;
+  text-decoration: none !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 4px 20px var(--kisa-accent-glow);
+}
+
+.kisa-booking-bar__cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 28px var(--kisa-accent-glow);
+}
+
+.kisa-booking-bar__cta:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+/* ── Floating mobile book button ── */
+.kisa-floating-book {
+  position: fixed;
+  bottom: 24px;
+  right: 20px;
+  z-index: 9997;
+  display: none;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  background: var(--kisa-accent);
+  color: var(--kisa-dark) !important;
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: 50px;
+  text-decoration: none !important;
+  box-shadow: 0 8px 32px var(--kisa-accent-glow), 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+  letter-spacing: 0.02em;
+}
+
+.kisa-floating-book:hover {
+  transform: scale(1.04);
+  box-shadow: 0 12px 40px var(--kisa-accent-glow), 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.kisa-floating-book:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.kisa-floating-book svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 991px) {
+  .kisa-floating-book {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 767px) {
+  .kisa-booking-bar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px 16px;
+    gap: 8px;
+  }
+
+  .kisa-booking-bar__info {
+    font-size: 12px;
+    justify-content: center;
+  }
+
+  .kisa-booking-bar__cta {
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+/* ── Section booking CTAs ── */
+.kisa-section-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 40px;
+  padding: 32px 24px;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.kisa-section-cta__text {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 420px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.kisa-section-cta__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: var(--kisa-accent);
+  color: var(--kisa-dark) !important;
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: 6px;
+  text-decoration: none !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 4px 20px var(--kisa-accent-glow);
+  letter-spacing: 0.02em;
+}
+
+.kisa-section-cta__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px var(--kisa-accent-glow);
+}
+
+.kisa-section-cta__btn:focus-visible {
+  outline: 2px solid var(--kisa-accent);
+  outline-offset: 3px;
+}
+
+/* Light sections */
+.section:not(.bg---home-hero) .kisa-section-cta {
+  border-top-color: rgba(0, 0, 0, 0.06);
+}
+
+.section:not(.bg---home-hero) .kisa-section-cta__text {
+  color: rgba(0, 0, 0, 0.55);
+}
+
+/* ── Footer booking block ── */
+.kisa-footer-booking {
+  margin-top: 24px;
+  padding: 24px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(200, 169, 106, 0.12);
+}
+
+.kisa-footer-booking h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 8px;
+}
+
+.kisa-footer-booking p {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+
+.kisa-footer-booking a.kisa-footer-book-btn {
+  display: inline-flex;
+  padding: 12px 24px;
+  background: var(--kisa-accent);
+  color: var(--kisa-dark) !important;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 6px;
+  text-decoration: none !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.kisa-footer-booking a.kisa-footer-book-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px var(--kisa-accent-glow);
+}
+
+/* ── Premium micro-interactions ── */
+.btn-primary,
+.kisa-section-cta__btn,
+.kisa-booking-bar__cta,
+.kisa-floating-book {
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kisa-booking-bar,
+  .kisa-floating-book,
+  .kisa-section-cta__btn,
+  .kisa-booking-bar__cta,
+  .btn-primary {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .kisa-floating-book:hover,
+  .kisa-section-cta__btn:hover,
+  .kisa-booking-bar__cta:hover {
+    transform: none;
+  }
+}
