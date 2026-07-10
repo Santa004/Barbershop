@@ -11278,3 +11278,6 @@ figcaption {
     grid-column: span 1 / span 1;
   }
 }
+
+/* Kisa Barbershop – hide template branding */
+.w-webflow-badge,.brix-badges-wrapper,.bottom-banner,.buy-on-webflow-btn,.more-templates-badge-wrapper{display:none!important;visibility:hidden!important;}

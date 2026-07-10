@@ -13106,3 +13106,6 @@ figcaption {
   font-style: italic;
   font-display: swap;
 }
+
+/* Kisa Barbershop – hide template branding */
+.w-webflow-badge,.brix-badges-wrapper,.bottom-banner,.buy-on-webflow-btn,.more-templates-badge-wrapper{display:none!important;visibility:hidden!important;}
