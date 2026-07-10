@@ -525,6 +525,187 @@
   }
 }
 
+/* ── Maps & location (Fas 4) ── */
+.kisa-location-block {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  gap: 24px;
+}
+
+.kisa-map-embed {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(200, 169, 106, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.kisa-map-embed iframe {
+  display: block;
+  width: 100%;
+  min-height: 420px;
+}
+
+.kisa-location-card {
+  overflow: hidden;
+}
+
+.kisa-location-card img {
+  width: 100%;
+  object-fit: cover;
+  max-height: 280px;
+}
+
+/* ── Salon gallery (Fas 4) ── */
+.kisa-gallery {
+  gap: 16px !important;
+}
+
+.kisa-gallery-item {
+  display: block;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 1;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.kisa-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.kisa-gallery-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+}
+
+.kisa-gallery-cta {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  border: 1px solid rgba(200, 169, 106, 0.25);
+  text-decoration: none !important;
+}
+
+.kisa-gallery-cta span {
+  color: var(--kisa-accent);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+}
+
+/* ── Gift cards & membership (Fas 4) ── */
+.kisa-premium-card {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 48px 40px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(200, 169, 106, 0.12);
+}
+
+.kisa-gift-cards {
+  background: transparent;
+}
+
+.kisa-membership {
+  padding-top: 0;
+}
+
+.kisa-membership-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.kisa-perk-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.kisa-perk-list li {
+  padding: 10px 0 10px 28px;
+  position: relative;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.5;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.kisa-perk-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--kisa-accent);
+  font-weight: 700;
+}
+
+.kisa-membership-perks li strong {
+  color: #fff;
+}
+
+.center-content {
+  justify-content: center;
+}
+
+/* ── Shop notice (Fas 4) ── */
+.kisa-shop-notice {
+  padding-top: 0;
+  padding-bottom: 48px;
+}
+
+.kisa-shop-notice .kisa-premium-card {
+  background: rgba(200, 169, 106, 0.06);
+}
+
+/* ── Booking page embed ── */
+.kisa-booking-embed-section {
+  padding-top: 0;
+}
+
+.kisa-booking-embed-wrap {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.kisa-booking-iframe {
+  width: 100%;
+  min-height: 720px;
+  border: 0;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.kisa-booking-fallback {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.kisa-booking-fallback a {
+  color: var(--kisa-accent);
+}
+
+@media (max-width: 767px) {
+  .kisa-membership-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kisa-premium-card {
+    padding: 32px 24px;
+  }
+
+  .kisa-booking-iframe {
+    min-height: 600px;
+  }
+}
+
 /* ── Premium micro-interactions ── */
 .btn-primary,
 .kisa-section-cta__btn,

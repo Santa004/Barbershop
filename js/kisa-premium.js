@@ -20,6 +20,10 @@
     "Se vårt hantverk": "Gillar du vad du ser? Boka din klippning nu.",
     "5,0 i betyg – nöjda kunder i Kisa":
       "5,0 i betyg av våra kunder – boka och upplev det själv.",
+    "Vår salong på Kisa torget":
+      "Besök oss på torget – boka din tid och upplev salongen.",
+    "Följ oss på Instagram":
+      "Se fler bilder och boka din nästa klippning direkt.",
   };
 
   function isOpenNow() {
