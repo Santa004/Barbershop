@@ -251,6 +251,85 @@
   box-shadow: 0 4px 20px var(--kisa-accent-glow);
 }
 
+/* ── Service cards (Fas 2) ── */
+.kisa-service-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.kisa-service-duration {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(200, 169, 106, 0.85);
+  padding: 4px 10px;
+  border: 1px solid rgba(200, 169, 106, 0.25);
+  border-radius: 4px;
+}
+
+.kisa-service-price {
+  margin: 0;
+}
+
+.kisa-service-book {
+  width: 100%;
+  text-align: center;
+  margin-top: 4px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.kisa-service-book:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px var(--kisa-accent-glow);
+}
+
+.kisa-service-book:focus-visible {
+  outline: 2px solid var(--kisa-accent);
+  outline-offset: 3px;
+}
+
+.services-container {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.services-container:hover {
+  transform: translateY(-3px);
+}
+
+.services-container:hover .image-services {
+  filter: brightness(1.1);
+  transition: filter 0.3s ease;
+}
+
+/* ── FAQ enhancements ── */
+.accordion-item-wrapper.large {
+  transition: border-color 0.25s ease;
+}
+
+.accordion-item-wrapper.large:hover {
+  border-color: rgba(200, 169, 106, 0.2);
+}
+
+.accordion-title {
+  transition: color 0.2s ease;
+}
+
+.accordion-item-wrapper.large:hover .accordion-title {
+  color: var(--kisa-accent, #c8a96a);
+}
+
+@media (max-width: 767px) {
+  .kisa-service-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
 /* ── Premium micro-interactions ── */
 .btn-primary,
 .kisa-section-cta__btn,
@@ -264,14 +343,18 @@
   .kisa-floating-book,
   .kisa-section-cta__btn,
   .kisa-booking-bar__cta,
-  .btn-primary {
+  .btn-primary,
+  .services-container,
+  .services-container:hover {
     transition: none !important;
     animation: none !important;
+    transform: none !important;
   }
 
   .kisa-floating-book:hover,
   .kisa-section-cta__btn:hover,
-  .kisa-booking-bar__cta:hover {
+  .kisa-booking-bar__cta:hover,
+  .kisa-service-book:hover {
     transform: none;
   }
 }
