@@ -1,1 +1,3 @@
-# Mantorps-Sm-djursklinik
+# Barbershop
+
+Premium Webflow barber template — cleaned for local hosting.
