@@ -1,6 +1,5 @@
 import { siteConfig } from "@/content/site";
 import { BookingEmbed } from "@/components/booking/BookingEmbed";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { createPageMetadata } from "@/lib/metadata";
@@ -15,20 +14,30 @@ export const metadata = createPageMetadata({
 export default function BookingPage() {
   return (
     <>
-      <section className="bg-neutral-950 pt-28 pb-10 md:pt-36">
-        <Container>
-          <SectionHeading
-            align="left"
-            title="Boka din tid"
-            description="Välj tjänst och tid direkt via Bokahit. Öppet mån–fre 10:00–18:00 på Kisa torget."
-          />
-          <Button href={siteConfig.bookingUrl} external className="mt-2">
-            Öppna bokningssystemet
-          </Button>
+      <section className="bg-neutral-950 pb-8 pt-24 md:pt-32">
+        <Container className="max-w-3xl">
+          <p className="text-xs font-semibold tracking-[0.18em] text-accent uppercase">
+            Bokning
+          </p>
+          <h1 className="font-display mt-3 text-3xl font-semibold text-white md:text-4xl">
+            Boka din tid
+          </h1>
+          <p className="mt-4 text-base leading-relaxed text-white/65">
+            Välj tjänst och tid i bokningsrutan nedan. Öppet mån–fre 10:00–18:00
+            på Kisa torget.
+          </p>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Button href={siteConfig.bookingUrl} external>
+              Öppna Bokahit
+            </Button>
+            <Button href={siteConfig.phoneLink} variant="secondary">
+              Ring {siteConfig.phone}
+            </Button>
+          </div>
         </Container>
       </section>
 
-      <section className="pb-20">
+      <section className="pb-24 md:pb-20">
         <Container>
           <BookingEmbed />
         </Container>

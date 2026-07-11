@@ -7,15 +7,12 @@ export function InstagramSection() {
   return (
     <Section variant="muted">
       <SectionHeading
+        eyebrow="Instagram"
         title="Följ oss på Instagram"
-        description="Se fler bilder från salongen, fades och skägg på @kisabarbershop."
+        description="Se fler bilder från salongen på @kisabarbershop."
       />
 
-      <div className="mx-auto max-w-xl text-center">
-        <p className="mb-6 text-sm text-white/60">
-          Vi visar inget falskt live-flöde. Följ oss på Instagram för senaste
-          inlägg och bakom kulisserna på torget.
-        </p>
+      <div className="text-center">
         <Button href={siteConfig.instagram} external size="lg">
           Följ @kisabarbershop
         </Button>

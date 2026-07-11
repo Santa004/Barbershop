@@ -21,19 +21,31 @@ export default function ContactPage() {
     <>
       <FAQSchema items={faqItems} />
 
-      <section className="bg-neutral-950 pt-28 pb-12 md:pt-36">
+      <section className="bg-neutral-950 pb-10 pt-24 md:pt-32">
         <Container>
           <SectionHeading
             align="left"
-            title="Kontakta oss"
-            description="Hitta hit, ring oss eller boka direkt online."
+            eyebrow="Kontakt"
+            title="Hitta hit eller boka online"
+            description="Vi finns mitt på Kisa torget. Ring, boka via Bokahit eller kom förbi under öppettiderna."
           />
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Button href={siteConfig.bookingUrl} external>
+              Boka tid
+            </Button>
+            <Button href={siteConfig.phoneLink} variant="secondary">
+              Ring salongen
+            </Button>
+            <Button href={siteConfig.mapsUrl} external variant="secondary">
+              Vägbeskrivning
+            </Button>
+          </div>
         </Container>
       </section>
 
-      <Section>
-        <div className="grid gap-8 lg:grid-cols-2">
-          <div className="space-y-6">
+      <Section className="!pt-0">
+        <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
+          <div className="space-y-4">
             <ContactCard title="Adress">
               <p>
                 {siteConfig.address.street}
@@ -42,7 +54,10 @@ export default function ContactPage() {
               </p>
             </ContactCard>
             <ContactCard title="Telefon">
-              <a href={siteConfig.phoneLink} className="text-accent hover:underline">
+              <a
+                href={siteConfig.phoneLink}
+                className="text-lg font-medium text-accent hover:underline"
+              >
                 {siteConfig.phone}
               </a>
             </ContactCard>
@@ -51,18 +66,15 @@ export default function ContactPage() {
                 {siteConfig.openingHours.map((row) => (
                   <li key={row.label} className="flex justify-between gap-4">
                     <span>{row.label}</span>
-                    <span>{row.value}</span>
+                    <span className="font-medium text-white/85">
+                      {row.value}
+                    </span>
                   </li>
                 ))}
               </ul>
             </ContactCard>
-            <ContactCard title="Bokning">
-              <p className="mb-4">
-                Boka enkelt via Bokahit – välj tjänst, tid och bekräfta direkt.
-              </p>
-              <Button href={siteConfig.bookingUrl} external size="sm">
-                Boka tid
-              </Button>
+            <ContactCard title="Parkering">
+              <p>Parkeringsplatser finns runt Kisa torget, mitt i centrum.</p>
             </ContactCard>
           </div>
           <MapEmbed />
@@ -70,7 +82,7 @@ export default function ContactPage() {
       </Section>
 
       <Section variant="muted">
-        <SectionHeading title="Vanliga frågor" />
+        <SectionHeading eyebrow="FAQ" title="Vanliga frågor" />
         <div className="mx-auto max-w-3xl">
           <FAQ items={faqItems} />
         </div>
@@ -89,8 +101,8 @@ function ContactCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-xl border border-white/10 bg-neutral-900/40 p-5">
-      <h2 className="mb-3 text-sm font-semibold tracking-wide text-accent uppercase">
+    <div className="rounded-xl border border-white/10 bg-neutral-900/30 p-5">
+      <h2 className="mb-2 text-xs font-semibold tracking-[0.12em] text-accent uppercase">
         {title}
       </h2>
       <div className="text-sm leading-relaxed text-white/75">{children}</div>

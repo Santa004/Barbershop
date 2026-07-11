@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans } from "next/font/google";
+import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { BookingBar, FloatingBookButton } from "@/components/layout/BookingBar";
@@ -14,9 +14,16 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  variable: "--font-cormorant",
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   ...createPageMetadata({
-    title: `${siteConfig.name} – Premium barbershop i Kisa`,
+    title: `${siteConfig.name} – Barbershop på Kisa torget`,
     description: siteConfig.description,
     path: "/",
   }),
@@ -33,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="sv" className={`${dmSans.variable} h-full`}>
+    <html lang="sv" className={`${dmSans.variable} ${cormorant.variable} h-full`}>
       <body className="min-h-full bg-neutral-950 text-white antialiased">
         <LocalBusinessSchema />
         <BookingBar />

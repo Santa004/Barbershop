@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 export function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -19,9 +20,22 @@ export function Header() {
     };
   }, [menuOpen]);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="absolute inset-x-0 top-0 z-50">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-5 md:px-8 md:py-6">
+    <header
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 transition-all duration-300 motion-reduce:transition-none",
+        scrolled
+          ? "border-b border-white/10 bg-neutral-950/95 shadow-lg shadow-black/20 backdrop-blur-md"
+          : "bg-transparent",
+      )}
+    >
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 md:px-8 md:py-5">
         <Link
           href="/"
           className="relative z-50 flex items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
@@ -32,27 +46,39 @@ export function Header() {
             width={160}
             height={48}
             priority
-            className="h-10 w-auto md:h-12"
+            className="h-9 w-auto md:h-11"
           />
         </Link>
 
         <nav
-          className="hidden items-center gap-8 lg:flex"
+          className="hidden items-center gap-7 lg:flex"
           aria-label="Huvudnavigation"
         >
-          {navigation.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setMenuOpen(false)}
-              className={cn(
-                "text-sm font-medium transition-colors hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
-                pathname === item.href ? "text-accent" : "text-white/80",
-              )}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navigation.map((item) => {
+            const isActive =
+              item.href === "/"
+                ? pathname === "/"
+                : pathname.startsWith(item.href);
+
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "relative text-sm font-medium transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+                  isActive ? "text-accent" : "text-white/75",
+                )}
+              >
+                {item.label}
+                {isActive ? (
+                  <span
+                    className="absolute -bottom-1.5 left-0 h-px w-full bg-accent/60"
+                    aria-hidden
+                  />
+                ) : null}
+              </Link>
+            );
+          })}
           <Button href={siteConfig.bookingUrl} external size="sm">
             Boka tid
           </Button>
@@ -60,7 +86,12 @@ export function Header() {
 
         <button
           type="button"
-          className="relative z-50 flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-md border border-white/10 bg-neutral-950/60 backdrop-blur lg:hidden"
+          className={cn(
+            "relative z-50 flex h-11 min-h-[44px] w-11 min-w-[44px] flex-col items-center justify-center gap-1.5 rounded-md border lg:hidden",
+            scrolled
+              ? "border-white/15 bg-neutral-900/80"
+              : "border-white/10 bg-neutral-950/50 backdrop-blur-sm",
+          )}
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
           aria-label={menuOpen ? "Stäng meny" : "Öppna meny"}
@@ -90,29 +121,41 @@ export function Header() {
       <div
         id="mobile-menu"
         className={cn(
-          "fixed inset-0 z-40 bg-neutral-950/95 backdrop-blur-lg transition-opacity lg:hidden",
+          "fixed inset-0 z-40 bg-neutral-950 transition-opacity duration-300 lg:hidden motion-reduce:transition-none",
           menuOpen ? "opacity-100" : "pointer-events-none opacity-0",
         )}
         aria-hidden={!menuOpen}
       >
         <nav
-          className="flex h-full flex-col items-center justify-center gap-6 px-6"
+          className="flex h-full flex-col items-center justify-center gap-7 px-6"
           aria-label="Mobilnavigation"
         >
-          {navigation.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setMenuOpen(false)}
-              className={cn(
-                "text-2xl font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent",
-                pathname === item.href ? "text-accent" : "text-white",
-              )}
-            >
-              {item.label}
-            </Link>
-          ))}
-          <Button href={siteConfig.bookingUrl} external size="lg" className="mt-4">
+          {navigation.map((item) => {
+            const isActive =
+              item.href === "/"
+                ? pathname === "/"
+                : pathname.startsWith(item.href);
+
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMenuOpen(false)}
+                className={cn(
+                  "min-h-[44px] text-2xl font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent",
+                  isActive ? "text-accent" : "text-white",
+                )}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+          <Button
+            href={siteConfig.bookingUrl}
+            external
+            size="lg"
+            className="mt-2 min-h-[44px]"
+          >
             Boka tid
           </Button>
         </nav>

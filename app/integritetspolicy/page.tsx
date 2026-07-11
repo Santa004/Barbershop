@@ -10,12 +10,15 @@ export const metadata = createPageMetadata({
 
 export default function PrivacyPage() {
   return (
-    <section className="bg-neutral-950 pt-28 pb-20 md:pt-36">
-      <Container className="max-w-3xl">
-        <h1 className="text-3xl font-bold text-white md:text-4xl">
+    <section className="bg-neutral-950 pb-20 pt-24 md:pt-32">
+      <Container className="max-w-2xl">
+        <p className="text-xs font-semibold tracking-[0.18em] text-accent uppercase">
+          Juridiskt
+        </p>
+        <h1 className="font-display mt-3 text-3xl font-semibold text-white md:text-4xl">
           Integritetspolicy
         </h1>
-        <div className="prose prose-invert mt-8 max-w-none space-y-4 text-white/75">
+        <div className="mt-10 space-y-6 text-base leading-relaxed text-white/70">
           <p>
             Kisa Barbershop respekterar din integritet. Denna webbplats samlar
             inte in personuppgifter via formulär. Bokning sker via Bokahit, som
@@ -28,7 +31,10 @@ export default function PrivacyPage() {
           </p>
           <p>
             För frågor om hur vi hanterar dina uppgifter, kontakta oss på{" "}
-            <a href={siteConfig.phoneLink} className="text-accent hover:underline">
+            <a
+              href={siteConfig.phoneLink}
+              className="text-accent hover:underline"
+            >
               {siteConfig.phone}
             </a>
             .

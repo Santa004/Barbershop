@@ -2,9 +2,9 @@ import type { SiteConfig } from "@/types";
 
 export const siteConfig: SiteConfig = {
   name: "Kisa Barbershop",
-  tagline: "En unik barberarupplevelse i Kisa",
+  tagline: "Precision i varje klippning.",
   description:
-    "Premium barbershop på torget i Kisa. Herrklippning, skäggtrimning och styling. Boka tid enkelt online via Bokahit.",
+    "Barbershop på Kisa torget. Herrklippning, fade och skäggtrimning med personlig service. Boka tid enkelt via Bokahit.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://barbershop-cyan-eta.vercel.app",
   bookingUrl:
     process.env.NEXT_PUBLIC_BOOKING_URL ??
@@ -35,6 +35,21 @@ export const siteConfig: SiteConfig = {
     "Avboka eller omboka via Bokahit. Vi rekommenderar minst 24 timmar i förväg om du inte kan komma.",
 };
 
+export const heroContent = {
+  label: "Barbershop på Kisa torget",
+  headline: "Precision i varje klippning.",
+  subheadline:
+    "Klippning, fade och skäggtrimning med personlig service mitt i Kisa.",
+  hours: "Mån–fre 10:00–18:00",
+} as const;
+
+export const trustHighlights = [
+  "Centralt på Kisa torget",
+  "Tydliga priser",
+  "Enkel bokning via Bokahit",
+  "Kort eller Swish i salongen",
+] as const;
+
 export const navigation = [
   { label: "Hem", href: "/" },
   { label: "Tjänster", href: "/tjanster" },
@@ -46,7 +61,6 @@ export const navigation = [
 export const images = {
   logo: "/images/logo-kisa-barbershop.svg",
   favicon: "/images/63b872b83e5783fdd64cdc32_Favicon.svg",
-  icon: "/images/63b872b83e5783f5e94cdc38_icon-barbershop-webflow-ecommerce-template.svg",
   hero: "/images/6352b63fc9635f6969ca8f39_Home-barbershop-x.jpg",
   interior: "/images/6352caffe6a8ab6bbcae3ce2_Left-Image-Barbershop.jpg",
   barberPhoto:

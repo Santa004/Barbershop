@@ -1,7 +1,5 @@
 import Image from "next/image";
 import { images, siteConfig } from "@/content/site";
-import { teamMembers } from "@/content/team";
-import { TeamMemberCard } from "@/components/team/TeamMemberCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Container, Section } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -11,33 +9,50 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata = createPageMetadata({
   title: `Om oss – ${siteConfig.name}`,
   description:
-    "Lär känna Kisa Barbershop på torget. Personlig service, precision i varje klippning och en premium barberarupplevelse i Kisa.",
+    "Lär känna Kisa Barbershop på torget. Personlig service, precision i varje klippning och en avslappnad barbershop i Kisa.",
   path: "/om-oss",
 });
+
+const values = [
+  {
+    title: "Hantverk i fokus",
+    text: "Varje klippning, fade och skäggtrimning görs med omsorg om detaljer och finish.",
+  },
+  {
+    title: "Personlig service",
+    text: "Vi tar oss tid att förstå din stil och skapa en look som passar dig.",
+  },
+  {
+    title: "Lokal närvaro",
+    text: "Mitt på Kisa torget – en naturlig del av vardagen i centrum.",
+  },
+] as const;
 
 export default function AboutPage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-neutral-950 pt-28 pb-16 md:pt-36">
+      <section className="relative overflow-hidden bg-neutral-950 pb-16 pt-24 md:pb-20 md:pt-32">
         <Container>
-          <div className="grid items-center gap-10 lg:grid-cols-2">
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div>
               <SectionHeading
                 align="left"
-                title="Om vår barbershop"
-                description="Passion för barberarkonst och personlig service på torget i Kisa."
+                eyebrow="Om oss"
+                title="Barbershop mitt på torget"
+                description="En avslappnad plats för klippning, fade och skägg – med personlig service och tydliga priser."
               />
-              <p className="text-white/70">
-                Traditionellt hantverk möter modern stil. Från torget till
-                spegeln skapar vi looken du vill ha – med tid, precision och
-                en avslappnad stämning i stolen.
+              <p className="text-base leading-relaxed text-white/65">
+                Kisa Barbershop är en lokal barbershop där traditionellt
+                hantverk möter modern stil. Vi erbjuder herrklippning,
+                skäggtrimning och styling i en miljö där du kan koppla av i
+                stolen.
               </p>
-              <div className="mt-8 flex flex-wrap gap-4">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Button href={siteConfig.bookingUrl} external>
                   Boka tid
                 </Button>
                 <Button href="/tjanster" variant="secondary">
-                  Se våra tjänster
+                  Se tjänster &amp; priser
                 </Button>
               </div>
             </div>
@@ -56,31 +71,35 @@ export default function AboutPage() {
 
       <Section variant="muted">
         <SectionHeading
-          title="Vilka vi är"
-          description="Familjevänlig salong på torget med fokus på kvalitet och personlig service."
+          eyebrow="Vår filosofi"
+          title="Precision, stil och närvaro"
+          description="Vi tror på en enkel upplevelse: tydliga priser, enkel bokning och fokus på det som räknas i stolen."
         />
-        <div className="mx-auto max-w-3xl space-y-4 text-center text-white/70">
-          <p>
-            Välkommen till Kisa Barbershop på torget. Vi erbjuder fade,
-            skäggtrimning och klassisk herrklippning med personlig service mitt
-            i centrum.
-          </p>
-          <p>
-            Hur vi startade? Med viljan att erbjuda en riktig barberarupplevelse
-            lokalt – där varje kund känner sig sedd och varje detalj räknas.
-          </p>
+        <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-3">
+          {values.map((item) => (
+            <article
+              key={item.title}
+              className="rounded-xl border border-white/10 bg-neutral-950/40 p-6"
+            >
+              <h3 className="font-semibold text-white">{item.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-white/60">
+                {item.text}
+              </p>
+            </article>
+          ))}
         </div>
       </Section>
 
       <Section>
-        <SectionHeading
-          title="Möt vårt team"
-          description="Passionerade barberare med fokus på precision, stil och personlig service."
-        />
-        <div className="mx-auto max-w-4xl space-y-6">
-          {teamMembers.map((member) => (
-            <TeamMemberCard key={member.id} member={member} />
-          ))}
+        <div className="mx-auto max-w-3xl text-center">
+          <SectionHeading
+            eyebrow="Teamet"
+            title="Din barberare i Kisa"
+            description="Vårt team består av passionerade barberare med fokus på precision, stil och personlig service. Vi ser fram emot att välkomna dig till stolen."
+          />
+          <Button href={siteConfig.bookingUrl} external className="mt-2">
+            Boka tid
+          </Button>
         </div>
       </Section>
 
