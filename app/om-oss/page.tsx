@@ -1,5 +1,7 @@
 import Image from "next/image";
-import { images, siteConfig } from "@/content/site";
+import { images, owner, siteConfig } from "@/content/site";
+import { teamMembers } from "@/content/team";
+import { TeamMemberCard } from "@/components/team/TeamMemberCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Container, Section } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -9,7 +11,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata = createPageMetadata({
   title: `Om oss – ${siteConfig.name}`,
   description:
-    "Lär känna Kisa Barbershop på torget. Personlig service, precision i varje klippning och en avslappnad barbershop i Kisa.",
+    "Lär känna Kisa Barbershop på torget. Mero driver salongen med personlig service, precision i varje klippning och en avslappnad barbershop i Kisa.",
   path: "/om-oss",
 });
 
@@ -39,13 +41,12 @@ export default function AboutPage() {
                 align="left"
                 eyebrow="Om oss"
                 title="Barbershop mitt på torget"
-                description="En avslappnad plats för klippning, fade och skägg – med personlig service och tydliga priser."
+                description={`${owner.name} driver salongen med personlig service, tydliga priser och en avslappnad stämning i stolen.`}
               />
               <p className="text-base leading-relaxed text-white/65">
                 Kisa Barbershop är en lokal barbershop där traditionellt
                 hantverk möter modern stil. Vi erbjuder herrklippning,
-                skäggtrimning och styling i en miljö där du kan koppla av i
-                stolen.
+                skäggtrimning och styling mitt i centrum.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Button href={siteConfig.bookingUrl} external>
@@ -91,15 +92,15 @@ export default function AboutPage() {
       </Section>
 
       <Section>
-        <div className="mx-auto max-w-3xl text-center">
-          <SectionHeading
-            eyebrow="Teamet"
-            title="Din barberare i Kisa"
-            description="Vårt team består av passionerade barberare med fokus på precision, stil och personlig service. Vi ser fram emot att välkomna dig till stolen."
-          />
-          <Button href={siteConfig.bookingUrl} external className="mt-2">
-            Boka tid
-          </Button>
+        <SectionHeading
+          eyebrow="Teamet"
+          title={`Möt ${owner.name}`}
+          description={`${owner.title} på Kisa torget – passionerad om precision, stil och personlig service.`}
+        />
+        <div className="mx-auto max-w-4xl">
+          {teamMembers.map((member) => (
+            <TeamMemberCard key={member.id} member={member} />
+          ))}
         </div>
       </Section>
 

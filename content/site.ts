@@ -35,6 +35,11 @@ export const siteConfig: SiteConfig = {
     "Avboka eller omboka via Bokahit. Vi rekommenderar minst 24 timmar i förväg om du inte kan komma.",
 };
 
+export const owner = {
+  name: "Mero",
+  title: "Ägare & barberare",
+} as const;
+
 export const heroContent = {
   label: "Barbershop på Kisa torget",
   headline: "Precision i varje klippning.",

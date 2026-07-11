@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { images, siteConfig } from "@/content/site";
+import { images, owner, siteConfig } from "@/content/site";
 import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -7,7 +7,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 const benefits = [
   {
     title: "Personlig service",
-    text: "Vi tar oss tid att förstå din stil och preferenser vid varje besök.",
+    text: "Mero tar sig tid att förstå din stil och preferenser vid varje besök.",
   },
   {
     title: "Precision i detaljer",
@@ -41,13 +41,13 @@ export function AboutSalon() {
           <SectionHeading
             align="left"
             eyebrow="Om salongen"
-            title="Din barberare i Kisa"
+            title={`${owner.name} – din barberare i Kisa`}
             description="En avslappnad barbershop mitt på torget – där hantverk, stil och personlig service möts."
           />
           <p className="mb-8 text-base leading-relaxed text-white/65">
-            Hos oss får du fade, skäggtrimning och klassisk herrklippning i en
-            lugn miljö. Vi erbjuder tydliga priser och enkel bokning så att du
-            snabbt kan komma till din stol.
+            {owner.name} driver salongen med fokus på fade, skäggtrimning och
+            klassisk herrklippning. Tydliga priser och enkel bokning gör det
+            smidigt att komma till din stol.
           </p>
 
           <ul className="mb-8 space-y-4">
