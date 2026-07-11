@@ -162,10 +162,12 @@
   function init() {
     markHomePage();
     upgradeBookingLinks();
-    createBookingBar();
-    createFloatingButton();
-    injectSectionCTAs();
-    enhanceFooter();
+    if (!document.body.classList.contains("kisa-home")) {
+      createBookingBar();
+      createFloatingButton();
+      injectSectionCTAs();
+      enhanceFooter();
+    }
   }
 
   if (document.readyState === "loading") {
