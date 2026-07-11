@@ -1,3 +1,7 @@
 node_modules/
-scraper.mjs
+.next/
+out/
+.env*.local
+.DS_Store
+npm-debug.log*
 package-lock.json
