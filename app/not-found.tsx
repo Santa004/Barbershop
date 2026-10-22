@@ -1,32 +1,29 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
-import { siteConfig } from "@/content/site";
+import { SITE } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Sidan finns inte",
+  description: "Sidan du sökte finns inte hos MP Entreprenad Service Borås AB.",
+  robots: { index: false },
+};
 
 export default function NotFound() {
   return (
-    <section className="flex min-h-[70vh] items-center bg-neutral-950 py-20">
-      <Container className="text-center">
-        <p className="text-sm font-semibold tracking-widest text-accent uppercase">
-          404
+    <section className="section">
+      <div className="wrap notfound">
+        <p className="eyebrow">FEL 404</p>
+        <h1>SIDAN FINNS INTE</h1>
+        <p>
+          Länken kan vara gammal eller felstavad. Gå till startsidan, eller ring{" "}
+          <a href={`tel:${SITE.phoneTel}`}>{SITE.phoneDisplay}</a> så hjälper vi dig direkt.
         </p>
-        <h1 className="mt-3 text-4xl font-bold text-white">Sidan hittades inte</h1>
-        <p className="mx-auto mt-4 max-w-md text-white/65">
-          Sidan du letade efter finns inte. Gå tillbaka till startsidan eller boka
-          din tid direkt.
-        </p>
-        <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <Link
-            href="/"
-            className="inline-flex items-center justify-center rounded-md border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:border-accent/40"
-          >
+        <p>
+          <Link className="btn" href="/">
             Till startsidan
           </Link>
-          <Button href={siteConfig.bookingUrl} external>
-            Boka tid
-          </Button>
-        </div>
-      </Container>
+        </p>
+      </div>
     </section>
   );
 }

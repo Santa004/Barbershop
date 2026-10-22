@@ -1,53 +1,81 @@
-import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { BookingBar, FloatingBookButton } from "@/components/layout/BookingBar";
-import { LocalBusinessSchema } from "@/components/seo/JsonLd";
-import { createPageMetadata } from "@/lib/metadata";
-import { images, siteConfig } from "@/content/site";
+import type { Metadata, Viewport } from "next";
+import { Barlow, Barlow_Condensed } from "next/font/google";
+import Script from "next/script";
+import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
+import { SITE, siteUrl } from "@/lib/site";
 import "./globals.css";
 
-const dmSans = DM_Sans({
+const barlow = Barlow({
   subsets: ["latin"],
-  variable: "--font-dm-sans",
+  weight: ["400", "600"],
+  variable: "--font-barlow",
   display: "swap",
 });
 
-const cormorant = Cormorant_Garamond({
+const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],
-  variable: "--font-cormorant",
+  weight: ["600", "700"],
+  variable: "--font-barlow-condensed",
   display: "swap",
-  weight: ["400", "500", "600", "700"],
 });
+
+const HOME_TITLE = "MP Entreprenad Service Borås AB — service och reparation av bergborrningsutrustning";
+const HOME_DESCRIPTION =
+  "Service, reparation och reservdelar för bergborrningsutrustning och entreprenadmaskiner i hela Sverige. Fyra servicebilar, egen hydraulikverkstad i Borås och ensamåterförsäljare för StonePower.";
 
 export const metadata: Metadata = {
-  ...createPageMetadata({
-    title: `${siteConfig.name} – Barbershop på Kisa torget`,
-    description: siteConfig.description,
-    path: "/",
-  }),
-  icons: {
-    icon: images.favicon,
-    apple: images.favicon,
+  metadataBase: new URL(siteUrl()),
+  title: { default: HOME_TITLE, template: "%s | MP Entreprenad Service Borås AB" },
+  description: HOME_DESCRIPTION,
+  applicationName: SITE.name,
+  formatDetection: { telephone: true, email: true, address: true },
+  openGraph: {
+    type: "website",
+    locale: "sv_SE",
+    siteName: SITE.name,
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
+    url: "/",
   },
-  metadataBase: new URL(siteConfig.url),
+  twitter: {
+    card: "summary_large_image",
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
+  },
+  alternates: { canonical: "/" },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#1b2126" },
+    { media: "(prefers-color-scheme: dark)", color: "#0c0f11" },
+  ],
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // Vercel Web Analytics är kakfritt och laddas bara i produktion på Vercel.
+  const analytics = process.env.VERCEL_ENV === "production";
+
   return (
-    <html lang="sv" className={`${dmSans.variable} ${cormorant.variable} h-full`}>
-      <body className="min-h-full bg-neutral-950 text-white antialiased">
-        <LocalBusinessSchema />
-        <BookingBar />
+    <html lang="sv" className={`${barlow.variable} ${barlowCondensed.variable}`}>
+      <body>
+        <a className="skip-link" href="#innehall">
+          Hoppa till innehållet
+        </a>
         <Header />
-        <main className="flex-1">{children}</main>
+        <main id="innehall" tabIndex={-1}>
+          {children}
+        </main>
         <Footer />
-        <FloatingBookButton />
+        {analytics && (
+          <>
+            <Script id="vercel-analytics" strategy="afterInteractive">
+              {"window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};"}
+            </Script>
+            <Script src="/_vercel/insights/script.js" strategy="afterInteractive" />
+          </>
+        )}
       </body>
     </html>
   );

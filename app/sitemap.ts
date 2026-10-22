@@ -1,15 +1,18 @@
 import type { MetadataRoute } from "next";
-import { siteConfig } from "@/content/site";
-
-const routes = ["/", "/tjanster", "/om-oss", "/kontakt", "/boka", "/integritetspolicy"];
+import { MACHINES } from "@/lib/machines";
+import { siteUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
-
-  return routes.map((route) => ({
-    url: `${siteConfig.url}${route}`,
-    lastModified,
-    changeFrequency: route === "/" ? "weekly" : "monthly",
-    priority: route === "/" ? 1 : 0.8,
-  }));
+  const base = siteUrl();
+  const now = new Date();
+  return [
+    { url: `${base}/`, lastModified: now, changeFrequency: "monthly", priority: 1 },
+    ...MACHINES.map((m) => ({
+      url: `${base}/teknisk-data/${m.slug}`,
+      lastModified: now,
+      changeFrequency: "yearly" as const,
+      priority: 0.7,
+    })),
+    { url: `${base}/integritetspolicy`, lastModified: now, changeFrequency: "yearly", priority: 0.2 },
+  ];
 }
